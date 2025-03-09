@@ -6,7 +6,6 @@
 
 body {
   margin: 20px auto;
-  font-family: "Lato";
   background: #666;
   color: #fff;
   font-family: "Reenie Beanie";
@@ -23,11 +22,11 @@ body {
     );
 }
 
-h2 {
+.note h2 {
   font-weight: bold;
   font-size: 2rem;
 }
-p {
+.note p {
   font-size: 2rem;
 }
 .notes {
@@ -39,7 +38,6 @@ p {
   text-decoration: none;
   color: #000;
   background: #ffc;
-  display: block;
   height: 15em;
   width: 15em;
   padding: 1em;
@@ -68,11 +66,10 @@ p {
   top: -10px;
 }
 
-.note:hover,
-.note:focus {
+.note:hover {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.25);
-  z-index: 15;
+  z-index: 20;
 }
 
 .note:after {
