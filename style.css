@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie:wght@400&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 20px auto;
+  font-family: "Lato";
+  background: #666;
+  color: #fff;
+  font-family: "Reenie Beanie";
+
+  background-image: repeating-linear-gradient(
+      to right,
+      transparent 0 100px,
+      #25283b22 100px 101px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 100px,
+      #25283b22 100px 101px
+    );
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2rem;
+}
+p {
+  font-size: 2rem;
+}
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.note {
+  text-decoration: none;
+  color: #000;
+  background: #ffc;
+  display: block;
+  height: 15em;
+  width: 15em;
+  padding: 1em;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+  transform: rotate(-6deg);
+  transition: transform 0.15s linear;
+  margin: 1em;
+  position: relative;
+  border-radius: 0 0 55px/50px 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.note:nth-child(even) {
+  transform: rotate(4deg);
+  top: 5px;
+  background: #cfc;
+}
+.note:nth-child(3n) {
+  transform: rotate(-3deg);
+  top: -5px;
+  background: #ccf;
+}
+.note:nth-child(5n) {
+  transform: rotate(5deg);
+  top: -10px;
+}
+
+.note:hover,
+.note:focus {
+  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+  transform: scale(1.25);
+  z-index: 15;
+}
+
+.note:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 30px 32px;
+  border-color: transparent transparent #e4e4a1 transparent;
+  box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* .note:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  background: #999;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+  transform: rotate(45deg) translate(15px, 2px);
+}
+ */
+
+.pin {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0px;
+  left: 55%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* From Uiverse.io by Yaya12085 */
+.page {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 550px;
+  min-height: 350px;
+  font-family: cursive;
+  font-size: 20px;
+  border-radius: 10px;
+  background: #fff;
+  background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
+  background-size: 100% 1.2rem;
+  line-height: 1.2rem;
+  padding: 1.4rem 0.5rem 0.3rem 4.5rem;
+}
+
+.page::before,
+.page::after {
+  position: absolute;
+  content: "";
+  bottom: 10px;
+  width: 40%;
+  height: 10px;
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.7);
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.page::before {
+  left: 15px;
+  transform: skew(-5deg) rotate(-5deg);
+}
+
+.page::after {
+  right: 15px;
+  transform: skew(5deg) rotate(5deg);
+}
+
+.page:hover::before,
+.page:hover::after {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+}
+
+.margin {
+  position: absolute;
+  border-left: 1px solid #d88;
+  height: 100%;
+  left: 3.3rem;
+  top: 0;
+}
+
+.page p {
+  margin: 0;
+  text-indent: 1rem;
+  padding-bottom: 1.2rem;
+  color: black;
+  line-height: 20px;
+}
+
+/* type styles */
+
+.tape {
+  position: absolute;
+  background: linear-gradient(160deg, #f8f8f5 50%, #f0efe6 100%);
+  opacity: 0.9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.tape-left {
+  top: -12px;
+  left: -20px;
+  width: 105px;
+  height: 28px;
+  transform: rotate(-28deg);
+  border-radius: 3px 2px 2px 3px;
+}
+
+.tape-right {
+  bottom: -15px;
+  right: -20px;
+  width: 75px;
+  height: 32px;
+  transform: rotate(-20deg);
+  border-radius: 2px 3px 3px 2px;
+}
+
+.tape::before,
+.tape::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  height: 100%;
+  width: 8px;
+  filter: brightness(90%);
+}
+
+.tape::before {
+  left: -4px;
+  clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+}
+
+.tape::after {
+  right: -4px;
+  clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+}
+
+.tape-left::after {
+  right: -5px;
+}
+
+/* Add realistic tape texture */
+.tape {
+  background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 4px 100%, 10px 100%;
+  background-position: 0 0, 2px 0;
+}
+
+/* Add wrinkles and slight transparency variations */
+.tape::before {
+  background-image: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent
+  );
+}
+
+/* Add subtle shine effect */
+.tape::after {
+  background-image: linear-gradient(
+    to right,
+    transparent 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 80%
+  );
+  mix-blend-mode: overlay;
+}
+
+/* Add torn edge texture */
+.tape-left::before,
+.tape-right::before {
+  opacity: 0.8;
+}
+
+/* Add slight glossy effect */
+.tape {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2),
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body class="min-h-screen p-4 flex flex-col justify-center items-center">
+    <div class="page">
+      <div class="margin"></div>
+      <div class="tape tape-left"></div>
+      <div class="tape tape-right"></div>
+      <div class="space-y-4">
+        <div class="grid grid-cols-1">
+          <div class="input-filed">
+            <label for="1" class="text-gray-700">some text</label>
+            <input
+              id="1"
+              type="text"
+              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2"
+            />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="input-filed">
+            <label for="2" class="text-gray-700">some text</label>
+            <input
+              id="2"
+              type="text"
+              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2"
+            />
+          </div>
+          <div class="input-filed">
+            <label for="3" class="text-gray-700">some text</label>
+            <input
+              id="3"
+              type="text"
+              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2"
+            />
+          </div>
+        </div>
+        <button class="text-gray-500 border border-gray-500 p-2">button</button>
+      </div>
+    </div>
+
+    <div class="papper mt-10">
+      <div class="notes">
+        <div class="relative">
+          <div class="note">
+            <h2>Title #1</h2>
+            <p>Text Content #1</p>
+          </div>
+          <img class="pin" src="/asset/image.svg" alt="" />
+        </div>
+        <div class="relative">
+          <img class="pin" src="/asset/image.svg" alt="" />
+          <div class="note">
+            <h2>Title #2</h2>
+            <p>Text Content #2</p>
+          </div>
+        </div>
+
+        <div class="note">
+          <h2>Title #3</h2>
+          <p>Text Content #3</p>
+        </div>
+
+        <div class="note">
+          <h2>Title #4</h2>
+          <p>Text Content #4</p>
+        </div>
+
+        <div class="note">
+          <h2>Title #5</h2>
+          <p>Text Content #5</p>
+        </div>
+
+        <div class="note">
+          <h2>Title #6</h2>
+          <p>Text Content #6</p>
+        </div>
+
+        <div class="note">
+          <h2>Title #7</h2>
+          <p>Text Content #7</p>
+        </div>
+
+        <div class="note">
+          <h2>Title #8</h2>
+          <p>Text Content #8</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
