@@ -52,7 +52,7 @@ export const createNewNote = (noteObj) => {
   }
 
   function createNoteContainer() {
-    const bgColor = getRandomElement(pastelColors);
+    // const bgColor = getRandomElement(pastelColors);
     const rotation = getRandomElement(degrees);
     const position = getRandomElement(positions);
 
@@ -62,7 +62,7 @@ export const createNewNote = (noteObj) => {
     const content = document.createElement("div");
     content.className = "overflow-y-auto";
     const paragraph = document.createElement("p");
-    paragraph.textContent = noteObj.text;
+    paragraph.textContent = `# ${noteObj.text}`;
     content.appendChild(paragraph);
     note.appendChild(content);
     return note;
@@ -76,7 +76,13 @@ export const createNewNote = (noteObj) => {
     return img;
   }
 
+  function pickNoteColor() {
+    noteObj.color = getRandomElement(pastelColors);
+  }
+
   function createNote() {
+    pickNoteColor();
+
     const div = document.createElement("div");
     div.className = "relative";
 

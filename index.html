@@ -9,8 +9,10 @@
     <title>Sticky Notes</title>
   </head>
   <body class="min-h-screen p-4 flex flex-col justify-center items-center">
-    <div class="title">
-      <h1 class="text-9xl p-5">Sticky Notes</h1>
+    <div class="title cursor-pointer">
+      <button class="duration-400 transition active:scale-110" id="reset-btn">
+        <h1 class="text-9xl p-5">Sticky Notes</h1>
+      </button>
     </div>
 
     <div class="page">
@@ -67,9 +69,10 @@
             alt=""
           />
           <button
-            class="text-gray-500 shadow-xl px-4 py-1 text-2xl font-bold rounded-lg hover:bg-amber-200 bg-amber-100 active:bg-amber-400 transition duration-400 active:scale-75"
+            id="save-btn"
+            class="border-2 border-white text-gray-500 shadow-xl px-4 py-1 text-2xl font-bold rounded-lg hover:scale-110 bg-transparent transition duration-400 active:scale-75"
           >
-            Save
+            Click To Save
           </button>
         </div>
       </div>
