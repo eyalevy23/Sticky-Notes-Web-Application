@@ -17,37 +17,56 @@
       <div class="margin"></div>
       <div class="tape tape-left"></div>
       <div class="tape tape-right"></div>
-      <div class="space-y-4">
+      <div class="space-y-5 p-4 mr-10">
         <div class="grid grid-cols-1">
-          <div class="input-filed">
-            <label for="1" class="text-gray-700">some text</label>
+          <div class="input-filed space-y-4">
+            <label
+              for="1"
+              class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
+              >some text:</label
+            >
             <textarea
+              placeholder="text will go here ...."
               rows="3"
               id="1"
               type="text"
-              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2 resize-none"
+              class="bg-transparent w-full rounded-lg text-gray-800 p-2 resize-none outline-none"
             ></textarea>
           </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="input-filed">
-            <label for="2" class="text-gray-700">some text</label>
+            <label
+              for="2"
+              class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
+              >Date:</label
+            >
             <input
               id="2"
-              type="text"
-              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2"
+              type="date"
+              class="flex justify-start items-center h-14 bg-transparent w-full rounded-lg text-gray-800 p-2"
             />
           </div>
           <div class="input-filed">
-            <label for="3" class="text-gray-700">some text</label>
+            <label
+              for="3"
+              class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
+              >Time</label
+            >
             <input
               id="3"
-              type="text"
-              class="border border-gray-600 bg-transparent w-full rounded-lg text-gray-800 p-2"
+              type="time"
+              class="bg-transparent w-full rounded-lg text-gray-800 p-2 h-14 flex justify-start items-center"
             />
           </div>
         </div>
-        <button class="text-gray-500 border border-gray-500 p-2">button</button>
+        <div class="flex justify-center items-center">
+          <button
+            class="text-gray-500 border border-gray-500 p-2 text-2xl font-bold rounded-md bg-gray-300"
+          >
+            button
+          </button>
+        </div>
       </div>
     </div>
 
