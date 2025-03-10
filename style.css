@@ -70,6 +70,8 @@ body {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.25);
   z-index: 20;
+  border-radius: 0;
+  overflow-y: auto;
 }
 
 .note:after {
@@ -83,6 +85,10 @@ body {
   border-width: 0 0 30px 32px;
   border-color: transparent transparent #e4e4a1 transparent;
   box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.note:hover::after {
+  opacity: 0;
 }
 
 /* .note:before {

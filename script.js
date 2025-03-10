@@ -1,35 +1,16 @@
-// const init = () => {
-//   const allNotes = document.querySelectorAll("li a");
+const init = () => {
+  const container = document.getElementById("notes");
 
-//   // Add event listeners for content changes
-//   allNotes.forEach((note, index) => {
-//     note.addEventListener("input", () => {
-//       const noteTitle = note.querySelector("h2").textContent;
-//       const noteContent = note.querySelector("p").textContent;
-//       const itemKey = `list_${index}`;
+  const div = document.createElement("div");
+  div.className = "relative";
+  div.innerHTML = `
+        <div class="note -top-1 bg-[#A4C8E1]" style="transform: rotate(8deg)">
+            <h2>Title #10</h2>
+            <p>Text Content #1</p>
+        </div>
+        <img class="pin" src="/asset/image.svg" alt="" />
+  `;
+  container.appendChild(div);
+};
 
-//       const data = {
-//         title: noteTitle,
-//         content: noteContent,
-//       };
-
-//       localStorage.setItem(itemKey, JSON.stringify(data));
-//     });
-
-//     // Load saved content
-//     const itemKey = `list_${index}`;
-//     const savedData = localStorage.getItem(itemKey);
-
-//     if (savedData) {
-//       try {
-//         const data = JSON.parse(savedData);
-//         note.querySelector("h2").textContent = data.title;
-//         note.querySelector("p").textContent = data.content;
-//       } catch (e) {
-//         console.error(`Error loading note ${index}:`, e);
-//       }
-//     }
-//   });
-// };
-
-// document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init);

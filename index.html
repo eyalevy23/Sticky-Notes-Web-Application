@@ -44,7 +44,7 @@
             <input
               id="2"
               type="date"
-              class="flex justify-start items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2"
+              class="flex justify-start items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold sm:font-medium"
             />
           </div>
           <div class="input-filed flex justify-start items-end">
@@ -56,13 +56,18 @@
             <input
               id="3"
               type="time"
-              class="flex justify-cenetr items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2"
+              class="flex justify-cenetr items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold sm:font-medium"
             />
           </div>
         </div>
-        <div class="flex justify-center items-center mt-10">
+        <div class="flex justify-center items-center mt-10 relative">
+          <img
+            class="absolute size-7 -top-4 right-[40%] z-20"
+            src="/asset/image.svg"
+            alt=""
+          />
           <button
-            class="text-gray-500 border border-gray-500 px-4 py-1 text-2xl font-bold rounded-md bg-gray-300 hover:bg-gray-200 active:bg-gray-400 transition duration-400 active:scale-75"
+            class="text-gray-500 shadow-xl px-4 py-1 text-2xl font-bold rounded-lg hover:bg-amber-200 bg-amber-100 active:bg-amber-400 transition duration-400 active:scale-75"
           >
             Save
           </button>
@@ -71,7 +76,7 @@
     </div>
 
     <div class="papper mt-10">
-      <div class="notes">
+      <div class="notes" id="notes">
         <div class="relative">
           <div class="note">
             <h2>Title #1</h2>
@@ -104,7 +109,12 @@
 
         <div class="note">
           <h2>Title #5</h2>
-          <p>Text Content #5</p>
+          <p>
+            Text Content #5 ;Lorem ipsum dolor sit amet consectetur, adipisicing
+            elit. Incidunt vero dolorem culpa tempora quis, soluta omnis sed in
+            fugit asperiores earum ipsam ab iure tempore modi, maxime velit
+            doloremque aliquam!
+          </p>
         </div>
 
         <div class="note">
