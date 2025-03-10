@@ -118,10 +118,10 @@ body {
   font-size: 20px;
   border-radius: 10px;
   background: #fff;
-  background-image: linear-gradient(#f5f5f0 1.1rem, #ccc 1.2rem);
-  background-size: 100% 1.2rem;
-  line-height: 1.4rem;
-  padding: 1.4rem 0.5rem 0.3rem 4.5rem;
+  background-image: linear-gradient(#f5f5f0 1.5rem, #ccc 1.6rem);
+  background-size: 100% 1.6rem;
+  line-height: 1.8rem;
+  padding: 1.8rem 0.5rem 0.3rem 4.5rem;
 }
 
 .page::before,
@@ -262,4 +262,9 @@ body {
 .tape {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2),
     inset 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#text-area {
+  font-family: "Reenie Beanie";
+  font-size: 30px;
 }

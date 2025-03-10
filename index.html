@@ -17,25 +17,25 @@
       <div class="margin"></div>
       <div class="tape tape-left"></div>
       <div class="tape tape-right"></div>
-      <div class="space-y-5 p-4 mr-10">
+      <div class="py-4 mr-10">
         <div class="grid grid-cols-1">
           <div class="input-filed space-y-4">
             <label
               for="1"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
-              >some text:</label
+              >Take a Note:</label
             >
             <textarea
               placeholder="text will go here ...."
               rows="3"
-              id="1"
+              id="text-area"
               type="text"
               class="bg-transparent w-full rounded-lg text-gray-800 p-2 resize-none outline-none"
             ></textarea>
           </div>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="input-filed">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="input-filed col-span-2 flex justify-center items-end">
             <label
               for="2"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
@@ -44,27 +44,27 @@
             <input
               id="2"
               type="date"
-              class="flex justify-start items-center h-14 bg-transparent w-full rounded-lg text-gray-800 p-2"
+              class="flex justify-start items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2"
             />
           </div>
-          <div class="input-filed">
+          <div class="input-filed flex justify-start items-end">
             <label
               for="3"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold sm:font-medium"
-              >Time</label
+              >Time:</label
             >
             <input
               id="3"
               type="time"
-              class="bg-transparent w-full rounded-lg text-gray-800 p-2 h-14 flex justify-start items-center"
+              class="flex justify-cenetr items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2"
             />
           </div>
         </div>
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center mt-10">
           <button
-            class="text-gray-500 border border-gray-500 p-2 text-2xl font-bold rounded-md bg-gray-300"
+            class="text-gray-500 border border-gray-500 px-4 py-1 text-2xl font-bold rounded-md bg-gray-300 hover:bg-gray-200 active:bg-gray-400 transition duration-400 active:scale-75"
           >
-            button
+            Save
           </button>
         </div>
       </div>
