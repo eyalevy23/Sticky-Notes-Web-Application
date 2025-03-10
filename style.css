@@ -29,15 +29,11 @@ body {
 .note p {
   font-size: 2rem;
 }
-.notes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+
 .note {
   text-decoration: none;
   color: #000;
-  background: #ffc;
+  /* background: #ffc; */
   height: 15em;
   width: 15em;
   padding: 1em;
@@ -51,7 +47,7 @@ body {
   z-index: 1;
 }
 
-.note:nth-child(even) {
+/* .note:nth-child(even) {
   transform: rotate(4deg);
   top: 5px;
   background: #cfc;
@@ -64,14 +60,13 @@ body {
 .note:nth-child(5n) {
   transform: rotate(5deg);
   top: -10px;
-}
+} */
 
 .note:hover {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.25);
   z-index: 20;
   border-radius: 0;
-  /* overflow-y: auto; */
 }
 
 .note:after {
@@ -277,21 +272,21 @@ body {
 }
 
 /* Custom rotation classes */
-.rotate-2 {
+.rotate-2deg {
   transform: rotate(2deg);
 }
-.rotate-5 {
+.rotate-5deg {
   transform: rotate(5deg);
 }
-.rotate-7 {
+.rotate-7deg {
   transform: rotate(7deg);
 }
-.-rotate-2 {
+.-rotate-2deg {
   transform: rotate(-2deg);
 }
-.-rotate-5 {
+.-rotate-5deg {
   transform: rotate(-5deg);
 }
-.-rotate-7 {
+.-rotate-7deg {
   transform: rotate(-7deg);
 }
