@@ -71,7 +71,7 @@ body {
   transform: scale(1.25);
   z-index: 20;
   border-radius: 0;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
 .note:after {
@@ -179,7 +179,8 @@ body {
   position: absolute;
   background: linear-gradient(160deg, #f8f8f5 50%, #f0efe6 100%);
   opacity: 0.9;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
   z-index: 2;
 }
 
@@ -266,11 +267,31 @@ body {
 
 /* Add slight glossy effect */
 .tape {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 #text-area {
   font-family: "Reenie Beanie";
   font-size: 30px;
+}
+
+/* Custom rotation classes */
+.rotate-2 {
+  transform: rotate(2deg);
+}
+.rotate-5 {
+  transform: rotate(5deg);
+}
+.rotate-7 {
+  transform: rotate(7deg);
+}
+.-rotate-2 {
+  transform: rotate(-2deg);
+}
+.-rotate-5 {
+  transform: rotate(-5deg);
+}
+.-rotate-7 {
+  transform: rotate(-7deg);
 }
