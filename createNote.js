@@ -3,13 +3,12 @@ export const getRandomElement = (arr) =>
 
 export const pastelColors = [
   "#ffc", // Pastel Yellow
-  "#B2E0B2", // Pastel Green
-  "#A4C8E1", // Pastel Blue
-  "#FFB3C1", // Pastel Pink
-  "#E6B3E0", // Pastel Lavender
-  "#FFCCB3", // Pastel Peach
   "#ccf", // Pastel Mint
-  "#cfc",
+  "#cfc", // Pastel Green
+  "#cff", // Pastel Cyan
+  "#fcc", // Pastel Pink
+  "#fcf", // Pastel Lavender
+  "#ffc", // Pastel Peach
 ];
 
 const degrees = [
