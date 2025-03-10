@@ -2,6 +2,8 @@
 * {
   margin: 0;
   padding: 0;
+  touch-action: manipulation; /* Disables double-tap zoom */
+  -webkit-tap-highlight-color: transparent; /* Removes default iOS tap highlight */
 }
 
 body {
@@ -289,4 +291,42 @@ body {
 }
 .-rotate-7deg {
   transform: rotate(-7deg);
+}
+
+/* From Uiverse.io by philipo30 */
+.delete-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1em;
+  transition: transform 0.2s ease;
+}
+
+.trash-svg {
+  padding: 4px;
+  width: 2.5em;
+  height: 2.5em;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  overflow: visible;
+}
+
+#lid-group {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.delete-button:hover #lid-group {
+  transform: rotate(-28deg) translateY(2px);
+}
+
+.delete-button:active #lid-group {
+  transform: rotate(-12deg) scale(0.98);
+}
+
+.delete-button:hover .trash-svg {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.delete-button:active .trash-svg {
+  transform: scale(0.96) rotate(-1deg);
 }
