@@ -69,6 +69,7 @@
             alt=""
           />
           <button
+            ontouchstart=""
             id="save-btn"
             class="border-2 border-white text-gray-500 shadow-xl px-4 py-1 text-2xl rounded-lg hover:scale-110 bg-transparent transition duration-400 active:scale-75"
           >
@@ -86,11 +87,11 @@
     </div>
 
     <script type="module" src="script.js"></script>
-    <script>
+    <!-- <script>
       // Add passive touch listener to enable :active on ios devices
       if (typeof window !== "undefined") {
         document.addEventListener("touchstart", () => {}, { passive: true });
       }
-    </script>
+    </script> -->
   </body>
 </html>

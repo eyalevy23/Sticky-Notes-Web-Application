@@ -64,12 +64,12 @@ body {
   top: -10px;
 } */
 
-.note:hover {
+/* .note:hover {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.25);
   z-index: 20;
   border-radius: 0;
-}
+} */
 
 .note:after {
   content: "";
@@ -84,7 +84,18 @@ body {
   box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.note:hover::after {
+/* .note:hover::after {
+  opacity: 0;
+} */
+
+.note.active {
+  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+  transform: scale(1.25);
+  z-index: 20;
+  border-radius: 0;
+}
+
+.note.active::after {
   opacity: 0;
 }
 

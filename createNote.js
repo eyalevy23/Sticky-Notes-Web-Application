@@ -1,4 +1,5 @@
 import { deleteActionBtn } from "./deleteBtn.js";
+import { setupNoteTracking } from "./trackingActiveNote.js";
 
 export const getRandomElement = (arr) =>
   arr[Math.floor(Math.random() * arr.length)];
@@ -95,11 +96,9 @@ export const createNewNote = (noteObj) => {
 
     const img = createImg();
 
-    const delBtn = document.createElement("button");
-    delBtn.classList = "delete-button hidden ";
-    delBtn.innerHTML = deleteActionBtn();
+    const delBtn = createDeleteButton();
 
-    const row = mergeTimestampAndDelBtn(timestamp, delBtn);
+    const row = mergeTimestampAndDelBtnToOneRow(timestamp, delBtn);
 
     note.appendChild(row);
     div.append(img, note);
@@ -109,7 +108,7 @@ export const createNewNote = (noteObj) => {
     return div;
   }
 
-  function mergeTimestampAndDelBtn(timestamp, btn) {
+  function mergeTimestampAndDelBtnToOneRow(timestamp, btn) {
     const grid = document.createElement("div");
     grid.classList = "grid grid-cols-3";
 
@@ -125,47 +124,38 @@ export const createNewNote = (noteObj) => {
     return grid;
   }
 
+  function createDeleteButton() {
+    const delBtn = document.createElement("button");
+    delBtn.classList = "delete-button hidden";
+    delBtn.innerHTML = deleteActionBtn();
+    return delBtn;
+  }
+
   function setEventListener(div, delBtn) {
-    let timeout;
-    const isTouchDevice = "ontouchstart" in window;
+    const note = div.querySelector(".note");
 
-    function showDeleteButton() {
+    function handleTouchEvent() {
+      note.classList.add("active");
       delBtn.classList.remove("hidden");
-      document.addEventListener("touchstart", handleOutsideTouch, {
-        once: true,
-      });
+
+      // Listen for a click outside `div` to remove the active class
+      document.addEventListener(
+        "click",
+        (e) => {
+          if (!div.contains(e.target)) {
+            note.classList.remove("active");
+            delBtn.classList.add("hidden");
+          }
+        },
+        { once: true } // Ensures this event runs only once
+      );
     }
 
-    function hideDeleteButton() {
-      delBtn.classList.add("hidden");
-    }
+    // Click event to show the note and delete button
+    div.addEventListener("click", handleTouchEvent, { once: true });
 
-    function handleOutsideTouch(event) {
-      if (!div.contains(event.target) && !delBtn.contains(event.target)) {
-        hideDeleteButton();
-      }
-    }
-
-    function cancelTouchTimeout() {
-      clearTimeout(timeout);
-    }
-
-    // Mouse handling (only for non-touch devices)
-    if (!isTouchDevice) {
-      div.addEventListener("mouseenter", showDeleteButton);
-      div.addEventListener("mouseleave", hideDeleteButton);
-    }
-
-    // Touch handling (long press)
-    div.addEventListener("touchstart", (event) => {
-      if (event.cancelable) event.preventDefault();
-
-      cancelTouchTimeout();
-      timeout = setTimeout(showDeleteButton, 500);
-
-      div.addEventListener("touchend", cancelTouchTimeout, { once: true });
-      div.addEventListener("touchmove", cancelTouchTimeout, { once: true });
-    });
+    // Example delete button action
+    delBtn.addEventListener("click", () => alert(1));
   }
 
   return createNote();
