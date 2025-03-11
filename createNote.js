@@ -1,5 +1,4 @@
 import { deleteActionBtn } from "./deleteBtn.js";
-import { setupNoteTracking } from "./trackingActiveNote.js";
 
 export const getRandomElement = (arr) =>
   arr[Math.floor(Math.random() * arr.length)];
@@ -55,7 +54,6 @@ export const createNewNote = (noteObj) => {
   }
 
   function createNoteContainer() {
-    // const bgColor = getRandomElement(pastelColors);
     const rotation = getRandomElement(degrees);
     const position = getRandomElement(positions);
 
@@ -81,14 +79,16 @@ export const createNewNote = (noteObj) => {
   }
 
   function pickNoteColor() {
-    noteObj.color = getRandomElement(pastelColors);
+    if (noteObj.color === null) {
+      noteObj.color = getRandomElement(pastelColors);
+    }
   }
 
   function createNote() {
     pickNoteColor();
 
     const div = document.createElement("div");
-    div.className = "relative";
+    div.className = "note-warper relative";
 
     const note = createNoteContainer();
 
@@ -103,8 +103,6 @@ export const createNewNote = (noteObj) => {
     note.appendChild(row);
     div.append(img, note);
 
-    setEventListener(div, delBtn);
-
     return div;
   }
 
@@ -117,7 +115,7 @@ export const createNewNote = (noteObj) => {
     span1.appendChild(timestamp);
 
     const span2 = document.createElement("div");
-    span2.className = "col-span-1 flex justify-end items-end";
+    span2.className = "col-span-1 flex justify-end items-end"; // Delete button will be bottom right corner
     span2.appendChild(btn);
 
     grid.append(span1, span2);
@@ -128,34 +126,8 @@ export const createNewNote = (noteObj) => {
     const delBtn = document.createElement("button");
     delBtn.classList = "delete-button hidden";
     delBtn.innerHTML = deleteActionBtn();
+
     return delBtn;
-  }
-
-  function setEventListener(div, delBtn) {
-    const note = div.querySelector(".note");
-
-    function handleTouchEvent() {
-      note.classList.add("active");
-      delBtn.classList.remove("hidden");
-
-      // Listen for a click outside `div` to remove the active class
-      document.addEventListener(
-        "click",
-        (e) => {
-          if (!div.contains(e.target)) {
-            note.classList.remove("active");
-            delBtn.classList.add("hidden");
-          }
-        },
-        { once: true } // Ensures this event runs only once
-      );
-    }
-
-    // Click event to show the note and delete button
-    div.addEventListener("click", handleTouchEvent, { once: true });
-
-    // Example delete button action
-    delBtn.addEventListener("click", () => alert(1));
   }
 
   return createNote();

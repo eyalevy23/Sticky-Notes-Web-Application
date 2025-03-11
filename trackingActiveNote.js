@@ -1,9 +1,7 @@
-// Track the currently active note element
 let activeNote = null;
-// Reference to the document click handler for adding/removing
-let documentClickHandler = null;
+let clickListenerAdded = false; // Track if click event is active
 
-export const setupNoteTracking = (notesContainerId = "notes-container") => {
+export const setupNoteTracking = (notesContainerId = "notes") => {
   const notesContainer = document.getElementById(notesContainerId);
 
   if (!notesContainer) {
@@ -11,49 +9,54 @@ export const setupNoteTracking = (notesContainerId = "notes-container") => {
     return () => {}; // Return empty function if container not found
   }
 
-  // Function to deactivate the current active note
   const deactivateCurrentNote = () => {
     if (activeNote) {
       const note = activeNote.querySelector(".note");
       const deleteBtn = activeNote.querySelector(".delete-button");
 
-      note.classList.remove("active");
-      deleteBtn.classList.add("hidden");
-      activeNote = null;
+      if (note && deleteBtn) {
+        note.classList.remove("active");
+        deleteBtn.classList.add("hidden");
+      }
 
-      // Remove the document click listener since no notes are active
-      document.removeEventListener("click", documentClickHandler);
-      documentClickHandler = null;
+      activeNote = null;
+      removeOutsideClickListener();
     }
   };
 
-  // Define the document click handler
-  documentClickHandler = (e) => {
-    // If there's an active note and the click is outside it
+  const handleOutsideClick = (e) => {
     if (
       activeNote &&
       !activeNote.contains(e.target) &&
-      !notesContainer.contains(e.target)
+      !e.target.closest(".note-warper")
     ) {
       deactivateCurrentNote();
     }
   };
 
-  // Use event delegation for all notes
+  const addOutsideClickListener = () => {
+    if (!clickListenerAdded) {
+      document.addEventListener("click", handleOutsideClick);
+      clickListenerAdded = true;
+    }
+  };
+
+  const removeOutsideClickListener = () => {
+    if (clickListenerAdded) {
+      document.removeEventListener("click", handleOutsideClick);
+      clickListenerAdded = false;
+    }
+  };
+
+  // Handle mouse enter for desktop hover
   notesContainer.addEventListener(
     "mouseenter",
     (e) => {
-      // Find the closest note container element
-      const noteDiv = e.target.closest(".relative");
-      if (!noteDiv) return;
+      const noteDiv = e.target.closest(".note-warper");
+      if (!noteDiv || activeNote === noteDiv) return;
 
-      // Don't do anything if this note is already active
-      if (activeNote === noteDiv) return;
-
-      // Deactivate any currently active note
       deactivateCurrentNote();
 
-      // Activate this note
       const note = noteDiv.querySelector(".note");
       const deleteBtn = noteDiv.querySelector(".delete-button");
 
@@ -61,51 +64,47 @@ export const setupNoteTracking = (notesContainerId = "notes-container") => {
         activeNote = noteDiv;
         note.classList.add("active");
         deleteBtn.classList.remove("hidden");
-
-        // Add document click listener only when a note becomes active
-        document.addEventListener("click", documentClickHandler);
+        addOutsideClickListener();
       }
     },
     true
-  ); // Use capture phase to ensure this runs before other handlers
+  );
 
+  // Handle clicks on notes (for mobile)
   notesContainer.addEventListener("click", (e) => {
-    // Find the closest note container element
-    const noteDiv = e.target.closest(".relative");
-    if (!noteDiv) return;
+    const noteDiv = e.target.closest(".note-warper");
 
-    // If clicking on an already active note, just let the click pass through
-    if (activeNote === noteDiv) {
-      return;
-    }
+    if (noteDiv) {
+      e.stopPropagation(); // Prevent document click handler from firing
 
-    // Prevent propagation if this is activating a new note
-    e.stopPropagation();
+      if (activeNote === noteDiv) return; // Do nothing if same note
 
-    // Deactivate any currently active note
-    deactivateCurrentNote();
+      deactivateCurrentNote();
 
-    // Activate this note
-    const note = noteDiv.querySelector(".note");
-    const deleteBtn = noteDiv.querySelector(".delete-button");
+      const note = noteDiv.querySelector(".note");
+      const deleteBtn = noteDiv.querySelector(".delete-button");
 
-    if (note && deleteBtn) {
-      activeNote = noteDiv;
-      note.classList.add("active");
-      deleteBtn.classList.remove("hidden");
-
-      // Add document click listener only when a note becomes active
-      document.addEventListener("click", documentClickHandler);
+      if (note && deleteBtn) {
+        activeNote = noteDiv;
+        note.classList.add("active");
+        deleteBtn.classList.remove("hidden");
+        addOutsideClickListener();
+      }
     }
   });
 
-  // Return a function that just handles the delete button click for each note
+  // Handle mouse leave (deactivate when mouse leaves notes container)
+  notesContainer.addEventListener("mouseleave", (e) => {
+    if (!notesContainer.contains(e.relatedTarget)) {
+      deactivateCurrentNote();
+    }
+  });
+
   return function setEventListener(div, delBtn) {
-    // Example delete button action
     delBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent the click from triggering the note's click event
-      alert(1);
-      // You may want to deactivate the note here after deletion
+      e.stopPropagation();
+      alert("Note deleted");
+      // div.remove();
     });
   };
 };
