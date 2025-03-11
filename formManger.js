@@ -63,9 +63,9 @@ export class FormManger {
   setEventListeners() {
     const setEventListener = setupNoteTracking(this.element.noteContainer.id);
     const notes = this.element.noteContainer.querySelectorAll(".note-warper");
-    notes.forEach((note) => {
-      const delBtn = note.querySelector(".delete-button");
-      setEventListener(note, delBtn);
-    });
+    // notes.forEach((note) => {
+    //   const delBtn = note.querySelector(".delete-button");
+    //   setEventListener(note, delBtn);
+    // });
   }
 }

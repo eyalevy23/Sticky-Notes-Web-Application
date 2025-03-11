@@ -3,22 +3,27 @@ let clickListenerAdded = false; // Track if click event is active
 
 export const setupNoteTracking = (notesContainerId = "notes") => {
   const notesContainer = document.getElementById(notesContainerId);
-
   if (!notesContainer) {
     console.error(`Container with ID "${notesContainerId}" not found`);
-    return () => {}; // Return empty function if container not found
+    return; // Return early if container not found
   }
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+    alert("Note deleted");
+    activeNote.remove();
+    deactivateCurrentNote();
+  };
 
   const deactivateCurrentNote = () => {
     if (activeNote) {
       const note = activeNote.querySelector(".note");
       const deleteBtn = activeNote.querySelector(".delete-button");
-
       if (note && deleteBtn) {
         note.classList.remove("active");
         deleteBtn.classList.add("hidden");
+        deleteBtn.removeEventListener("click", handleDeleteClick);
       }
-
       activeNote = null;
       removeOutsideClickListener();
     }
@@ -54,16 +59,14 @@ export const setupNoteTracking = (notesContainerId = "notes") => {
     (e) => {
       const noteDiv = e.target.closest(".note-warper");
       if (!noteDiv || activeNote === noteDiv) return;
-
       deactivateCurrentNote();
-
       const note = noteDiv.querySelector(".note");
       const deleteBtn = noteDiv.querySelector(".delete-button");
-
       if (note && deleteBtn) {
         activeNote = noteDiv;
         note.classList.add("active");
         deleteBtn.classList.remove("hidden");
+        deleteBtn.addEventListener("click", handleDeleteClick);
         addOutsideClickListener();
       }
     },
@@ -73,21 +76,18 @@ export const setupNoteTracking = (notesContainerId = "notes") => {
   // Handle clicks on notes (for mobile)
   notesContainer.addEventListener("click", (e) => {
     const noteDiv = e.target.closest(".note-warper");
-
     if (noteDiv) {
+      console.log(noteDiv);
       e.stopPropagation(); // Prevent document click handler from firing
-
       if (activeNote === noteDiv) return; // Do nothing if same note
-
       deactivateCurrentNote();
-
       const note = noteDiv.querySelector(".note");
       const deleteBtn = noteDiv.querySelector(".delete-button");
-
       if (note && deleteBtn) {
         activeNote = noteDiv;
         note.classList.add("active");
         deleteBtn.classList.remove("hidden");
+        deleteBtn.addEventListener("click", handleDeleteClick);
         addOutsideClickListener();
       }
     }
@@ -99,12 +99,4 @@ export const setupNoteTracking = (notesContainerId = "notes") => {
       deactivateCurrentNote();
     }
   });
-
-  return function setEventListener(div, delBtn) {
-    delBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      alert("Note deleted");
-      // div.remove();
-    });
-  };
 };
