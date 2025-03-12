@@ -6,6 +6,7 @@ export class FormManger {
   constructor() {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
+    this.cleanupNoteTracking = null;
     this.init();
   }
 
@@ -68,9 +69,8 @@ export class FormManger {
   }
 
   deleteNote(noteId) {
-    // this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
-    // this.commitToStorage(this.dataBase);
-    alert(`you are just deleted note : ${noteId}`);
+    this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
+    this.commitToStorage(this.dataBase);
   }
 
   addNoteTracking() {
@@ -78,5 +78,13 @@ export class FormManger {
       container: this.elements.noteContainer,
       onDelete: (noteId) => this.deleteNote(noteId),
     });
+  }
+
+  destroy() {
+    // Call the cleanup function to remove event listeners
+    if (this.cleanupNoteTracking) {
+      this.cleanupNoteTracking();
+      this.cleanupNoteTracking = null;
+    }
   }
 }

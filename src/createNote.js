@@ -69,7 +69,7 @@ export const createNewNote = (noteObj) => {
     pickNoteColor();
 
     const div = document.createElement("div");
-    div.className = "note-warper relative";
+    div.className = "note-wrapper relative";
     div.dataset.id = noteObj.id;
 
     const note = createNoteContainer();
