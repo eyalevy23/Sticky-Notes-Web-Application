@@ -30,6 +30,7 @@ export class FormManger {
       saveBtn: document.getElementById("save-btn"),
       resetBtn: document.getElementById("reset-btn"),
       noteContainer: document.getElementById("notes"),
+
       textArea: document.getElementById("text-area"),
       date: document.getElementById("date"),
       time: document.getElementById("time"),
@@ -56,16 +57,27 @@ export class FormManger {
 
   addEventListener() {
     this.elements.saveBtn.addEventListener("click", () => {
-      this.handleSubmitClick;
+      this.handleSubmitClick();
     });
     this.elements.resetBtn.addEventListener("click", () => {
-      this.handleResetClick;
+      this.handleResetClick();
     });
   }
 
-  handleSubmitClick() {}
+  handleSubmitClick() {
+    console.log("this is a test");
+    const isValid = this.formValidation.isValidForm();
+  }
 
-  handleResetClick() {}
+  handleResetClick() {
+    this.resetFormField();
+    this.formValidation.resetFormFields();
+  }
+
+  resetFormField() {
+    this.elements.textArea.value = "";
+    this.initializeTimestamp();
+  }
 
   saveToLocalStorage(newRecord) {
     try {

@@ -4,6 +4,12 @@ export class FormValidation {
     this.date = date;
     this.time = time;
 
+    this.validFields = {
+      textLabel: false,
+      dateLabel: true,
+      timeLabel: true,
+    };
+
     this.cacheDomElementsLabel();
     this.setUpEventListener();
   }
@@ -24,63 +30,78 @@ export class FormValidation {
     };
   }
 
-  handleDateOnChange(e) {
+  handleDateOnChange(event) {
+    const selectedDate = new Date(event.target.value);
     const today = new Date();
-    const selectedDate = new Date(e.target.value); // Get the selected date from the input
 
-    // Set time to midnight for accurate comparison
     today.setHours(0, 0, 0, 0);
     selectedDate.setHours(0, 0, 0, 0);
 
-    if (isNaN(selectedDate.getTime()) || selectedDate < today) {
-      this.setUpRedErrorColor("dateLabel");
+    const isValid = selectedDate >= today;
+    this.setErrorColor("dateLabel", !isValid);
+
+    if (!isValid) {
       console.error("You have to pick today or a future day");
-    } else {
-      this.removeRedErrorColor("dateLabel");
     }
+
+    // Collapse date picker menu
+    this.date.blur();
   }
 
-  handleTimeOnChange(e) {
-    // Add your time validation logic here
-    const selectedTime = e.target.value;
+  handleTimeOnChange(event) {
+    const selectedTime = event.target.value;
     if (!selectedTime) {
-      this.setUpRedErrorColor("timeLabel");
+      this.setErrorColor("timeLabel", true);
       console.error("You have to pick a time");
     } else {
-      this.removeRedErrorColor("timeLabel");
+      this.setErrorColor("timeLabel", false);
     }
   }
 
-  handleTextAreaOnChange(e) {
-    // Add your text area validation logic here
-    const textValue = e.target.value;
+  handleTextAreaOnChange(event) {
+    const textValue = event.target.value;
     if (!textValue) {
-      this.setUpRedErrorColor("textLabel");
+      this.setErrorColor("textLabel", true);
       console.error("You have to enter some text");
     } else {
-      this.removeRedErrorColor("textLabel");
+      this.setErrorColor("textLabel", false);
     }
   }
 
-  setUpRedErrorColor(labelName) {
-    this.labelElement[labelName].classList.remove(
-      "text-gray-700",
-      "border-gray-400"
-    );
-    this.labelElement[labelName].classList.add(
-      "text-red-500",
-      "border-red-400"
-    );
+  setErrorColor(labelName, isError) {
+    const label = this.labelElement[labelName];
+    if (label) {
+      label.classList.toggle("text-gray-700", !isError);
+      label.classList.toggle("border-gray-400", !isError);
+      label.classList.toggle("text-red-500", isError);
+      label.classList.toggle("border-red-400", isError);
+
+      this.validFields[labelName] = !isError;
+    }
   }
 
-  removeRedErrorColor(labelName) {
-    this.labelElement[labelName].classList.remove(
-      "text-red-500",
-      "border-red-400"
-    );
-    this.labelElement[labelName].classList.add(
-      "text-gray-700",
-      "border-gray-400"
-    );
+  isValidForm() {
+    const isValid =
+      this.validFields.dateLabel &&
+      this.validFields.timeLabel &&
+      this.validFields.textLabel;
+
+    if (!isValid) {
+      Object.entries(this.validFields).forEach(([key, value]) => {
+        console.log(`Key: ${key}, Value: ${value}`);
+      });
+    }
+  }
+
+  resetFormFields() {
+    this.setErrorColor("textLabel", false);
+    this.setErrorColor("dateLabel", false);
+    this.setErrorColor("timeLabel", false);
+
+    this.validFields = {
+      textLabel: false,
+      dateLabel: true,
+      timeLabel: true,
+    };
   }
 }
