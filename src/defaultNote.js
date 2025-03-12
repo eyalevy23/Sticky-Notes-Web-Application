@@ -5,7 +5,7 @@ export const createDefaultNotes = () => {
       text: "Welcome to Sticky Notes.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#ffc", // Pastel Yellow
       createdAt: null,
     },
     {
@@ -13,7 +13,7 @@ export const createDefaultNotes = () => {
       text: "A Place to Manage All of Your Notes.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#ccf", // Pastel Mint
       createdAt: null,
     },
     {
@@ -21,7 +21,7 @@ export const createDefaultNotes = () => {
       text: "Stay Productive and Organized.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#cfc", // Pastel Green
       createdAt: null,
     },
     {
@@ -29,7 +29,7 @@ export const createDefaultNotes = () => {
       text: "Please Read All Notes Before Using The App.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#cff", // Pastel Cyan
       createdAt: null,
     },
     {
@@ -37,7 +37,7 @@ export const createDefaultNotes = () => {
       text: "Pro Tip: Click on the header to reset the form.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#fcc", // Pastel Pink
       createdAt: null,
     },
     {
@@ -45,7 +45,7 @@ export const createDefaultNotes = () => {
       text: "Long Notes Can Be Scrolled.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#fcf", // Pastel Lavender
       createdAt: null,
     },
     {
@@ -53,7 +53,7 @@ export const createDefaultNotes = () => {
       text: "Pro Tip 2: On Mobile Device Click On A Note to Active and Click Outside to Deactivate, Only One Note Can Be active At All Time.",
       dueDate: "dd/mm/yyyy",
       dueTime: "HH:MM",
-      color: null,
+      color: "#ffc", // Pastel Peach
       createdAt: null,
     },
   ];

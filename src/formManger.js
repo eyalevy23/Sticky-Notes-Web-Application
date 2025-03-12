@@ -64,9 +64,32 @@ export class FormManger {
     });
   }
 
+  // Format date as dd/mm/yyyy
+  formattedDate(date) {
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  }
+
+  createNoteObj() {
+    return {
+      id: String(Date.now() * Math.random()),
+      text: this.elements.textArea.value,
+      dueDate: this.formattedDate(this.elements.date.value),
+      dueTime: this.elements.time.value,
+      color: null,
+      createdAt: new Date().toISOString(),
+    };
+  }
+
   handleSubmitClick() {
-    console.log("this is a test");
     const isValid = this.formValidation.isValidForm();
+    if (!isValid) return;
+
+    const newNote = this.createNoteObj();
+    this.elements.noteContainer.appendChild(createNewNote(newNote));
+    this.dataBase.push(newNote);
+    this.saveToLocalStorage(newNote);
+    this.resetFormField();
   }
 
   handleResetClick() {

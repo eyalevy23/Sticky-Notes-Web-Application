@@ -80,6 +80,16 @@ export class FormValidation {
     }
   }
 
+  setBounceAnimation(labelName) {
+    const label = this.labelElement[labelName];
+    if (label) {
+      label.classList.add("bounce-effect");
+      setTimeout(() => {
+        label.classList.remove("bounce-effect");
+      }, 1000);
+    }
+  }
+
   isValidForm() {
     const isValid =
       this.validFields.dateLabel &&
@@ -88,9 +98,13 @@ export class FormValidation {
 
     if (!isValid) {
       Object.entries(this.validFields).forEach(([key, value]) => {
-        console.log(`Key: ${key}, Value: ${value}`);
+        if (!value) {
+          this.setBounceAnimation(key);
+          this.setErrorColor(key, true);
+        }
       });
     }
+    return isValid;
   }
 
   resetFormFields() {
