@@ -1,6 +1,7 @@
 import { createNewNote } from "./createNote.js";
 import { createDefaultNotes } from "./defaultNote.js";
 import { setupNoteTracking } from "./trackingActiveNote.js";
+import { FormValidation } from "./formValidation.js";
 
 export class FormManger {
   constructor() {
@@ -8,10 +9,17 @@ export class FormManger {
     this.dataBase = this.getExistingRecords();
     this.cleanupNoteTracking = null;
     this.init();
+
+    this.formValidation = new FormValidation(
+      this.elements.textArea,
+      this.elements.date,
+      this.elements.time
+    );
   }
 
   init() {
     this.cacheDomElements();
+    this.initializeTimestamp();
     this.addEventListener();
     this.loadNotes();
     this.addNoteTracking();
@@ -22,13 +30,42 @@ export class FormManger {
       saveBtn: document.getElementById("save-btn"),
       resetBtn: document.getElementById("reset-btn"),
       noteContainer: document.getElementById("notes"),
+      textArea: document.getElementById("text-area"),
+      date: document.getElementById("date"),
+      time: document.getElementById("time"),
     };
   }
 
-  addEventListener() {
-    this.elements.saveBtn.addEventListener("click", () => {});
-    this.elements.resetBtn.addEventListener("click", () => {});
+  initializeTimestamp() {
+    const now = new Date();
+
+    // Format date as yyyy-mm-dd (required format for <input type="date">)
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0"); // Get month and format
+    const day = String(now.getDate()).padStart(2, "0"); // Get day and format
+    const formattedDate = `${year}-${month}-${day}`; // Correct format for input[type="date"]
+
+    this.elements.date.value = formattedDate;
+
+    // Format time as HH:MM (input[type="time"] expects this format)
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const formattedTime = `${hours}:${minutes}`;
+    this.elements.time.value = formattedTime;
   }
+
+  addEventListener() {
+    this.elements.saveBtn.addEventListener("click", () => {
+      this.handleSubmitClick;
+    });
+    this.elements.resetBtn.addEventListener("click", () => {
+      this.handleResetClick;
+    });
+  }
+
+  handleSubmitClick() {}
+
+  handleResetClick() {}
 
   saveToLocalStorage(newRecord) {
     try {

@@ -12,7 +12,11 @@
     class="min-h-screen p-4 flex flex-col justify-center items-center my-5 mx-auto bg-[#666] text-white"
   >
     <div class="title cursor-pointer">
-      <button class="duration-400 transition active:scale-110" id="reset-btn">
+      <button
+        ontouchstart=""
+        class="duration-400 transition active:scale-110"
+        id="reset-btn"
+      >
         <h1 class="text-9xl p-5">Sticky Notes</h1>
       </button>
     </div>
@@ -25,7 +29,8 @@
         <div class="grid grid-cols-1">
           <div class="input-filed space-y-4">
             <label
-              for="1"
+              id="text-label"
+              for="text-area"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold"
               >Take a Note:</label
             >
@@ -41,26 +46,28 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="input-filed col-span-2 flex justify-center items-end">
             <label
-              for="2"
+              id="date-label"
+              for="date"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold"
               >Date:</label
             >
             <input
-              id="2"
+              id="date"
               type="date"
-              class="flex justify-start items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold"
+              class="flex justify-start items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold outline-none"
             />
           </div>
           <div class="input-filed flex justify-start items-end">
             <label
-              for="3"
+              id="time-label"
+              for="time"
               class="border-b-2 border-gray-400 text-gray-700 text-2xl font-bold"
               >Time:</label
             >
             <input
-              id="3"
+              id="time"
               type="time"
-              class="flex justify-cenetr items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold"
+              class="flex justify-cenetr items-end h-14 bg-transparent w-full rounded-lg text-gray-800 px-2 font-bold outline-none"
             />
           </div>
         </div>

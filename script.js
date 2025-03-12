@@ -5,6 +5,7 @@ const init = () => {
   //   const defaultNotes = createDefaultNotes().map(createNewNote);
   //   console.log(defaultNotes);
   //   container.append(...defaultNotes);
+  localStorage.clear();
   new FormManger();
 };
 

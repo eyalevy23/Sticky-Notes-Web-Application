@@ -13,8 +13,8 @@ export const createNewNote = (noteObj) => {
     details.className = "text-xl w-40";
 
     const timestamp = [
-      { label: "Date:", value: noteObj.date },
-      { label: "Time:", value: noteObj.time },
+      { label: "Date:", value: noteObj.dueDate },
+      { label: "Time:", value: noteObj.dueTime },
     ].map(({ label, value }) => {
       const item = document.createElement("div");
       item.className = "flex gap-3";

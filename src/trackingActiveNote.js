@@ -4,7 +4,7 @@
  */
 
 // Delay before a note becomes active to prevent accidental deletions
-const ACTIVATE_DELAY = 1; // milliseconds
+const ACTIVATE_DELAY = 10; // milliseconds
 
 /**
  * Sets up note tracking with activation delay for both desktop and mobile
