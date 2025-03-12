@@ -2,10 +2,10 @@ let activeNote = null;
 let clickListenerAdded = false;
 let justActivated = false;
 
-export const setupNoteTracking = (notesContainerId = "notes") => {
-  const notesContainer = document.getElementById(notesContainerId);
+export const setupNoteTracking = ({ container, onDelete }) => {
+  const notesContainer = container;
   if (!notesContainer) {
-    console.error(`Container with ID "${notesContainerId}" not found`);
+    console.error(`Container with ID "${notesContainer.id}" not found`);
     return;
   }
 
@@ -15,9 +15,17 @@ export const setupNoteTracking = (notesContainerId = "notes") => {
       return;
     }
     e.stopPropagation();
-    alert("Note deleted");
-    activeNote.remove();
+    console.log(activeNote);
+    const noteId = activeNote.dataset.id;
+
+    // activeNote.remove();
     deactivateNote();
+
+    console.log(noteId);
+
+    if (onDelete) {
+      onDelete(noteId);
+    }
   };
 
   const handleOutsideClick = (e) => {

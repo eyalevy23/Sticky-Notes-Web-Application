@@ -10,14 +10,14 @@ export class FormManger {
   }
 
   init() {
-    this.DomElement();
+    this.cacheDomElements();
     this.addEventListener();
     this.loadNotes();
-    this.setEventListeners();
+    this.addNoteTracking();
   }
 
-  DomElement() {
-    this.element = {
+  cacheDomElements() {
+    this.elements = {
       saveBtn: document.getElementById("save-btn"),
       resetBtn: document.getElementById("reset-btn"),
       noteContainer: document.getElementById("notes"),
@@ -25,8 +25,8 @@ export class FormManger {
   }
 
   addEventListener() {
-    this.element.saveBtn.addEventListener("click", () => {});
-    this.element.resetBtn.addEventListener("click", () => {});
+    this.elements.saveBtn.addEventListener("click", () => {});
+    this.elements.resetBtn.addEventListener("click", () => {});
   }
 
   saveToLocalStorage(newRecord) {
@@ -54,18 +54,29 @@ export class FormManger {
   loadNotes() {
     if (!this.dataBase) return;
 
-    this.dataBase.forEach((noteObj) => {
-      const noteElement = createNewNote(noteObj);
-      this.element.noteContainer.appendChild(noteElement);
+    this.dataBase.forEach((note) => {
+      this.elements.noteContainer.appendChild(createNewNote(note));
     });
   }
 
-  setEventListeners() {
-    const setEventListener = setupNoteTracking(this.element.noteContainer.id);
-    const notes = this.element.noteContainer.querySelectorAll(".note-warper");
-    // notes.forEach((note) => {
-    //   const delBtn = note.querySelector(".delete-button");
-    //   setEventListener(note, delBtn);
-    // });
+  commitToStorage(records) {
+    try {
+      localStorage.setItem(this.storageKey, JSON.stringify(records));
+    } catch (e) {
+      console.log("Local Storage commit filed", e);
+    }
+  }
+
+  deleteNote(noteId) {
+    // this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
+    // this.commitToStorage(this.dataBase);
+    alert(`you are just deleted note : ${noteId}`);
+  }
+
+  addNoteTracking() {
+    setupNoteTracking({
+      container: this.elements.noteContainer,
+      onDelete: (noteId) => this.deleteNote(noteId),
+    });
   }
 }

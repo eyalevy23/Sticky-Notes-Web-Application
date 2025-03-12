@@ -1,29 +1,11 @@
+import {
+  getRandomElement,
+  pastelColors,
+  degrees,
+  positions,
+  pinPosition,
+} from "./utils.js";
 import { deleteActionBtn } from "./deleteBtn.js";
-
-export const getRandomElement = (arr) =>
-  arr[Math.floor(Math.random() * arr.length)];
-
-export const pastelColors = [
-  "#ffc", // Pastel Yellow
-  "#ccf", // Pastel Mint
-  "#cfc", // Pastel Green
-  "#cff", // Pastel Cyan
-  "#fcc", // Pastel Pink
-  "#fcf", // Pastel Lavender
-  "#ffc", // Pastel Peach
-];
-
-const degrees = [
-  "-rotate-7deg",
-  "-rotate-5deg",
-  "-rotate-2deg",
-  "rotate-2deg",
-  "rotate-5deg",
-  "rotate-7deg",
-];
-const positions = ["-top-1", "top-0", "top-1"];
-
-const pinPosition = ["", "transform: scaleX(-1)"];
 
 export const createNewNote = (noteObj) => {
   function createTimeStamp() {
@@ -59,7 +41,6 @@ export const createNewNote = (noteObj) => {
 
     const note = document.createElement("div");
     note.className = `note flex flex-col justify-between bg-[${noteObj.color}] ${rotation} ${position}`;
-    note.dataset.id = noteObj.id;
 
     const content = document.createElement("div");
     content.className = "overflow-y-auto";
@@ -89,6 +70,7 @@ export const createNewNote = (noteObj) => {
 
     const div = document.createElement("div");
     div.className = "note-warper relative";
+    div.dataset.id = noteObj.id;
 
     const note = createNoteContainer();
 
