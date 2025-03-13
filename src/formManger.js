@@ -8,19 +8,21 @@ export class FormManger {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
     this.cleanupNoteTracking = null;
-    this.init();
 
-    this.formValidation = new FormValidation(
-      this.elements.textArea,
-      this.elements.date,
-      this.elements.time
-    );
+    this.init();
   }
 
   init() {
     this.cacheDomElements();
     this.initializeTimestamp();
     this.addEventListener();
+
+    this.formValidation = new FormValidation(
+      this.elements.textArea,
+      this.elements.date,
+      this.elements.time
+    );
+
     this.loadNotes();
     this.addNoteTracking();
   }
@@ -139,9 +141,18 @@ export class FormManger {
   loadNotes() {
     if (!this.dataBase) return;
 
+    this.checkForNoteThatDue();
+
     this.dataBase.forEach((note) => {
       this.elements.noteContainer.appendChild(createNewNote(note));
     });
+  }
+
+  checkForNoteThatDue() {
+    this.dataBase = this.dataBase.filter(
+      (note) => !this.formValidation.isNoteDuePassed(note)
+    );
+    this.commitToStorage(this.dataBase);
   }
 
   commitToStorage(records) {
