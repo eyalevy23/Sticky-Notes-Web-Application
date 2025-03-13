@@ -47,13 +47,13 @@ sticky-notes/
 ├── style.css            # Custom CSS styles
 │
 ├── src/
-│   ├── formManger.js    # Form management logic
-│   ├── createNote.js    # Note creation logic
-│   ├── utils.js         # Utility functions
-│   ├── defaultNote.js   # Default notes for first-time users
-│   ├── deleteBtn.js     # Delete button SVG generation
-│   ├── formValidation.js# Form input validation
-│   └── trackingActiveNote.js  # Note interaction tracking
+│   ├── formManger.js           # Form management logic
+│   ├── createNote.js           # Note creation logic
+│   ├── utils.js                # Utility functions
+│   ├── defaultNote.js          # Default notes for first-time users
+│   ├── deleteBtn.js            # Delete button SVG generation
+│   ├── formValidation.js       # Form input validation
+│   └── trackingActiveNote.js   # Note interaction tracking
 │
 ├── asset/
 │   ├── ficon.svg        # Favicon
