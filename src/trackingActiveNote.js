@@ -49,7 +49,6 @@ export const setupNoteTracking = ({ container, onDelete }) => {
         onDelete(noteId);
       }
 
-      // activeNote.remove();
       handleUiDeleteAnimation();
 
       deactivateNote();

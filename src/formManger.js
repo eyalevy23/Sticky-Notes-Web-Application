@@ -48,7 +48,7 @@ export class FormManger {
 
     this.elements.date.value = formattedDate;
 
-    // Format time as HH:MM (input[type="time"] expects this format)
+    // Format time as HH:MM (input[type="time"])
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
     const formattedTime = `${hours}:${minutes}`;
