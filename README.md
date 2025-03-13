@@ -1,5 +1,7 @@
 # Sticky Notes Web Application
 
+## 📱 View The Project At https://eyal-js-proj.netlify.app/
+
 ## 📌 Project Overview
 
 Sticky Notes is a modern, user-friendly web application designed to help users create, manage, and organize their notes efficiently. Built with vanilla JavaScript and styled with Tailwind CSS, this application provides a seamless note-taking experience.
@@ -26,7 +28,7 @@ Sticky Notes is a modern, user-friendly web application designed to help users c
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/sticky-notes.git
+git clone https://github.com/eyalevy23/basic_js_porj.git
 ```
 
 2. Navigate to the project directory:

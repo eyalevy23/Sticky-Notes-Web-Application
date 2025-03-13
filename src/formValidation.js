@@ -159,41 +159,23 @@ export class FormValidation {
   }
 
   isNoteDuePassed(note) {
+    // Ignore default placeholder dates
     if (note.dueDate === "dd/mm/yyyy") {
       return false;
     }
+
+    // Parse the due date and time into a Date object.
+    const noteDueDate = this.parseDueDate(note.dueDate, note.dueTime);
+
     const now = new Date();
-    const [dueDay, dueMonth, dueYear] = note.dueDate.split("/");
-    const [month, day, year] = now.toLocaleDateString().split("/");
-    if (Number(dueYear) < Number(year)) {
-      return true;
-    }
-    if (dueYear === year && Number(dueMonth) < Number(month)) {
-      return true;
-    }
-    if (
-      dueYear === year &&
-      Number(dueMonth) === Number(month) &&
-      Number(dueDay) < Number(day)
-    ) {
-      return true;
-    }
-    if (
-      dueYear === year &&
-      Number(dueMonth) === Number(month) &&
-      Number(dueDay) === Number(day)
-    ) {
-      return this.isTimePassed(note.dueTime);
-    }
-    return false;
+
+    // Return true if the note due date/time is in the past.
+    return noteDueDate < now;
   }
 
-  isTimePassed(dueTime) {
-    const now = new Date();
-    const [hour, minute] = dueTime.split(":").map(Number);
-    return (
-      hour < now.getHours() ||
-      (hour === now.getHours() && minute < now.getMinutes())
-    );
+  parseDueDate(dateStr, timeStr = "00:00") {
+    const [day, month, year] = dateStr.split("/").map(Number);
+    const [hour, minute] = timeStr.split(":").map(Number);
+    return new Date(year, month - 1, day, hour, minute);
   }
 }
