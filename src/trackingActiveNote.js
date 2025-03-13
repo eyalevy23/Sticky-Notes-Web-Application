@@ -49,6 +49,7 @@ export const setupNoteTracking = ({ container, onDelete }) => {
         onDelete(noteId);
       }
 
+      // activeNote.remove();
       handleUiDeleteAnimation();
 
       deactivateNote();
@@ -56,9 +57,7 @@ export const setupNoteTracking = ({ container, onDelete }) => {
   };
 
   const handleUiDeleteAnimation = () => {
-    const note = activeNote.querySelector(".note");
-    // const pin = activeNote.querySelector(".pin");
-    // pin.classList.add("fall-dnd-delete");
+    const note = activeNote.closest(".note-wrapper");
     note.classList.add("fall-dnd-delete");
     setTimeout(() => {
       note.remove();
