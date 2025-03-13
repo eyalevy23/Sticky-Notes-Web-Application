@@ -364,5 +364,5 @@ body {
   100% {
     opacity: 0;
     transform: translateY(200%) scale(0.5) rotate(180deg);
-  } /* Combined effects */
+  }
 }
