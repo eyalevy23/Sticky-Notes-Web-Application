@@ -86,19 +86,31 @@ export class FormManger {
     if (!isValid) return;
 
     const newNote = this.createNoteObj();
-    this.elements.noteContainer.appendChild(createNewNote(newNote));
+    const note = createNewNote(newNote);
     this.dataBase.push(newNote);
     this.saveToLocalStorage(newNote);
+
     this.resetFormField();
+    this.handleUiWhenCreateNewNote(note);
+  }
+
+  handleUiWhenCreateNewNote(note) {
+    // this.elements.textArea.focus();
+    note.style.opacity = 0;
+    this.elements.noteContainer.appendChild(note);
+    note.scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      note.classList.add("new-note-animation");
+    }, 400);
   }
 
   handleResetClick() {
     this.resetFormField();
-    this.formValidation.resetFormFields();
   }
 
   resetFormField() {
     this.elements.textArea.value = "";
+    this.formValidation.resetFormFields();
     this.initializeTimestamp();
   }
 

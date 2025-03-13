@@ -49,9 +49,20 @@ export const setupNoteTracking = ({ container, onDelete }) => {
         onDelete(noteId);
       }
 
-      activeNote.remove();
+      handleUiDeleteAnimation();
+
       deactivateNote();
     }
+  };
+
+  const handleUiDeleteAnimation = () => {
+    const note = activeNote.querySelector(".note");
+    const pin = activeNote.querySelector(".pin");
+    pin.classList.add("fall-dnd-delete");
+    note.classList.add("fall-dnd-delete");
+    setTimeout(() => {
+      note.remove();
+    }, 1000);
   };
 
   /**

@@ -330,3 +330,39 @@ body {
     transform: translateY(-10px); /* Slightly bounce upwards */
   }
 }
+
+.new-note-animation {
+  animation: new-note 1s ease-in-out 1 forwards;
+}
+
+@keyframes new-note {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fall-dnd-delete {
+  animation: fallAndDelete 1.2s ease-out;
+}
+
+@keyframes fallAndDelete {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(200%) scale(0.5) rotate(180deg);
+  } /* Combined effects */
+}
