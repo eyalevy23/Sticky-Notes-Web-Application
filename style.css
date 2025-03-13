@@ -21,14 +21,6 @@ body {
     );
 }
 
-.note h2 {
-  font-weight: bold;
-  font-size: 2rem;
-}
-.note p {
-  font-size: 2rem;
-}
-
 .note {
   text-decoration: none;
   color: #000;
@@ -45,17 +37,6 @@ body {
   overflow: hidden;
   z-index: 1;
 }
-
-/* .note:hover {
-  box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
-  transform: scale(1.25);
-  z-index: 20;
-  border-radius: 0;
-} */
-
-/* .note:hover::after {
-  opacity: 0;
-} */
 
 .note:after {
   content: "";

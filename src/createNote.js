@@ -45,6 +45,7 @@ export const createNewNote = (noteObj) => {
     const content = document.createElement("div");
     content.className = "overflow-y-auto";
     const paragraph = document.createElement("p");
+    paragraph.style.fontSize = "2rem";
     paragraph.textContent = `# ${noteObj.text}`;
     content.appendChild(paragraph);
     note.appendChild(content);

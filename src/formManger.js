@@ -7,7 +7,6 @@ export class FormManger {
   constructor() {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
-    this.cleanupNoteTracking = null;
 
     this.init();
   }
@@ -173,13 +172,5 @@ export class FormManger {
       container: this.elements.noteContainer,
       onDelete: (noteId) => this.deleteNote(noteId),
     });
-  }
-
-  destroy() {
-    // Call the cleanup function to remove event listeners
-    if (this.cleanupNoteTracking) {
-      this.cleanupNoteTracking();
-      this.cleanupNoteTracking = null;
-    }
   }
 }

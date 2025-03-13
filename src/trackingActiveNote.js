@@ -180,14 +180,4 @@ export const setupNoteTracking = ({ container, onDelete }) => {
 
   // Mobile click behavior
   container.addEventListener("click", handleNoteEvent);
-
-  // --- Cleanup Function ---
-
-  return () => {
-    cancelActivation();
-    container.removeEventListener("mouseenter", handleNoteEvent, true);
-    container.removeEventListener("click", handleNoteEvent);
-    removeOutsideClickListener();
-    deactivateNote();
-  };
 };

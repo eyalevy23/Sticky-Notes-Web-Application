@@ -1,6 +1,8 @@
 # Sticky Notes Web Application
 
-## 📱 View The Project At https://eyal-js-proj.netlify.app/
+## 📱 View The Project At
+
+https://eyal-js-proj.netlify.app/
 
 ## 📌 Project Overview
 
@@ -34,7 +36,7 @@ git clone https://github.com/eyalevy23/basic_js_porj.git
 2. Navigate to the project directory:
 
 ```bash
-cd sticky-notes
+cd basic_js_porj
 ```
 
 3. Open `index.html` in your browser or use a local development server
