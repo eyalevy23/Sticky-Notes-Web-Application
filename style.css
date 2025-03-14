@@ -58,6 +58,10 @@ body {
   border-radius: 0;
 }
 
+.note.active .content {
+  overflow-y: auto;
+}
+
 .note.active::after {
   opacity: 0;
 }

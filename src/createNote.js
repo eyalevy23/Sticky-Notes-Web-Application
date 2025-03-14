@@ -43,7 +43,7 @@ export const createNewNote = (noteObj) => {
     note.className = `note flex flex-col justify-between bg-[${noteObj.color}] ${rotation} ${position}`;
 
     const content = document.createElement("div");
-    content.className = "overflow-y-auto";
+    content.className = "content line-clamp-3";
     const paragraph = document.createElement("p");
     paragraph.style.fontSize = "2rem";
     paragraph.textContent = `# ${noteObj.text}`;
