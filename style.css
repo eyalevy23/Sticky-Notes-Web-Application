@@ -47,7 +47,7 @@ body {
   height: 0;
   border-style: solid;
   border-width: 0 0 30px 32px;
-  border-color: transparent transparent #e4e4a1 transparent;
+  border-color: transparent;
   box-shadow: -2px -2px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -348,5 +348,31 @@ body {
   100% {
     opacity: 0;
     transform: translateY(200%) scale(0.5) rotate(180deg);
+  }
+}
+
+.rotateY {
+  animation: rotateAnimationY 1s ease-in-out 1 0.2s;
+}
+
+@keyframes rotateAnimationY {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+}
+
+.rotateX {
+  animation: rotateAnimationX 0.5s ease 1 1.2s;
+}
+
+@keyframes rotateAnimationX {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
   }
 }
