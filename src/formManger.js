@@ -214,7 +214,7 @@ export class FormManager {
         if (noteElement.parentNode) {
           noteElement.remove();
         }
-      }, 1100);
+      }, 600);
       this.elements.overlay.classList.add("hidden");
     }
   }

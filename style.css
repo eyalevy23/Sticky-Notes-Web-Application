@@ -337,7 +337,7 @@ body {
 }
 
 .delete-animation {
-  animation: fallAndDelete 1.2s ease-out;
+  animation: fallAndDelete 0.7s ease-out;
 }
 
 @keyframes fallAndDelete {
@@ -347,7 +347,7 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(200%) scale(0.5) rotate(180deg);
+    transform: translateY(100%) scale(0.5) rotate(180deg);
   }
 }
 
