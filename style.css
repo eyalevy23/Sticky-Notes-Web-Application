@@ -364,8 +364,8 @@ body {
   }
 }
 
-.rotateX {
-  animation: rotateAnimationX 0.5s ease 1 1.2s;
+.rotate-noDelay {
+  animation: rotateAnimationX 0.5s ease 1;
 }
 
 @keyframes rotateAnimationX {

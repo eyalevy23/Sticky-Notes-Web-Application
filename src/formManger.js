@@ -62,6 +62,11 @@ export class FormManger {
     });
     this.elements.resetBtn.addEventListener("click", () => {
       this.handleResetClick();
+      this.elements.resetBtn.classList.add("rotate-noDelay");
+      setTimeout(() => {
+        this.elements.resetBtn.classList.remove("rotate-noDelay");
+        this.elements.resetBtn.classList.remove("rotateY");
+      }, 600);
     });
   }
 
