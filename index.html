@@ -11,12 +11,12 @@
   <body
     class="min-h-screen p-4 flex flex-col justify-center items-center my-5 mx-auto bg-[#666] text-white"
   >
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden transition-opacity duration-300"
+    ></div>
     <div class="title cursor-pointer">
-      <button
-        ontouchstart=""
-        class="duration-400 transition rotateY opacity-0 intersect:opacity-100 transition-opacity"
-        id="reset-btn"
-      >
+      <button class="transition rotateY" id="reset-btn">
         <h1 class="text-9xl p-5">Sticky Notes</h1>
       </button>
     </div>

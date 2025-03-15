@@ -70,7 +70,7 @@ export const createNewNote = (noteObj) => {
     pickNoteColor();
 
     const div = document.createElement("div");
-    div.className = "note-wrapper relative";
+    div.className = "note-wrapper relative z-50";
     div.dataset.id = noteObj.id;
 
     const note = createNoteContainer();
@@ -107,7 +107,8 @@ export const createNewNote = (noteObj) => {
 
   function createDeleteButton() {
     const delBtn = document.createElement("button");
-    delBtn.classList = "delete-button hidden";
+    delBtn.classList =
+      "delete-button transform translate-x-[150%] transition-transform duration-300 ";
     delBtn.innerHTML = deleteActionBtn();
 
     return delBtn;

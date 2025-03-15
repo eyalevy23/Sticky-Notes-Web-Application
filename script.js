@@ -1,8 +1,8 @@
-import { FormManger } from "./src/formManger.js";
+import { FormManager } from "./src/formManger.js";
 
 const init = () => {
   // localStorage.clear();
-  new FormManger();
+  new FormManager();
 };
 
 document.addEventListener("DOMContentLoaded", init);

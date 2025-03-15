@@ -4,16 +4,17 @@
  */
 
 // Delay before a note becomes active to prevent accidental deletions
-const ACTIVATE_DELAY = 10; // milliseconds
 
 /**
  * Sets up note tracking with activation delay for both desktop and mobile
  */
-export const setupNoteTracking = ({ container, onDelete }) => {
+export const setupNoteTracking = (container) => {
   // State variables
   let activeNote = null;
-  let documentClickListener = null;
-  let activationTimer = null;
+  const overlay = document.getElementById("overlay");
+  overlay.addEventListener("click", () => {
+    deactivateNote();
+  });
 
   // Validate container
   if (!container) {
@@ -27,33 +28,18 @@ export const setupNoteTracking = ({ container, onDelete }) => {
    * Handles clicks outside of notes to deactivate the active note
    */
   const handleOutsideClick = (event) => {
-    if (
-      activeNote &&
-      !activeNote.contains(event.target) &&
-      !event.target.closest(".note-wrapper")
-    ) {
-      deactivateNote();
-    }
+    // if (
+    //   activeNote &&
+    //   !activeNote.contains(event.target) &&
+    //   !event.target.closest(".note-wrapper")
+    // ) {
+    //   deactivateNote();
+    // }
   };
 
   /**
    * Handles delete button clicks
    */
-  const handleDeleteClick = (event) => {
-    event.stopPropagation();
-
-    if (activeNote) {
-      const noteId = activeNote.dataset.id;
-
-      if (onDelete) {
-        onDelete(noteId);
-      }
-
-      handleUiDeleteAnimation();
-
-      deactivateNote();
-    }
-  };
 
   const handleUiDeleteAnimation = () => {
     const note = activeNote.closest(".note-wrapper");
@@ -77,96 +63,49 @@ export const setupNoteTracking = ({ container, onDelete }) => {
   /**
    * Adds document click listener if not already added
    */
-  const addOutsideClickListener = () => {
-    if (!documentClickListener) {
-      documentClickListener = handleOutsideClick;
-      document.addEventListener("click", documentClickListener);
-    }
-  };
+  const addOutsideClickListener = () => {};
 
   /**
    * Removes document click listener if exists
    */
-  const removeOutsideClickListener = () => {
-    if (documentClickListener) {
-      document.removeEventListener("click", documentClickListener);
-      documentClickListener = null;
-    }
-  };
-
-  /**
-   * Cancels any pending activation
-   */
-  const cancelActivation = () => {
-    if (activationTimer) {
-      clearTimeout(activationTimer);
-      activationTimer = null;
-    }
-  };
+  const removeOutsideClickListener = () => {};
 
   /**
    * Deactivates the currently active note
    */
   const deactivateNote = () => {
-    // Cancel any pending activation
-    cancelActivation();
-
-    if (!activeNote) return;
-
-    const noteElement = activeNote.querySelector(".note");
-    const deleteButton = activeNote.querySelector(".delete-button");
-
-    if (noteElement && deleteButton) {
-      noteElement.classList.remove("active");
-      deleteButton.classList.add("hidden");
-      deleteButton.removeEventListener("click", handleDeleteClick);
-      activeNote.removeEventListener("mouseleave", handleMouseLeave);
+    if (activeNote) {
+      activeNote.classList.remove("active");
+      activeNote
+        .closest(".note-wrapper")
+        .querySelector(".delete-button")
+        .classList.remove("translate-x-0");
+      activeNote = null;
+      overlay.classList.add("hidden");
     }
-
-    activeNote = null;
-    removeOutsideClickListener();
   };
 
   /**
    * Activates a note with delay to prevent accidental interactions
    */
   const activateNote = (noteWrapper) => {
-    // Don't reactivate the same note
-    if (activeNote === noteWrapper) return;
-
-    // Cancel any pending activation
-    cancelActivation();
-
-    // Deactivate any currently active note
-    deactivateNote();
-
-    // Set activation timer with delay
-    activationTimer = setTimeout(() => {
+    if (activeNote === noteWrapper) {
+      return;
+    } else if (activeNote === null) {
       const noteElement = noteWrapper.querySelector(".note");
       const deleteButton = noteWrapper.querySelector(".delete-button");
-
-      if (noteElement && deleteButton) {
-        activeNote = noteWrapper;
-        noteElement.classList.add("active");
-        deleteButton.classList.remove("hidden");
-        deleteButton.addEventListener("click", handleDeleteClick);
-        noteWrapper.addEventListener("mouseleave", handleMouseLeave);
-        addOutsideClickListener();
-      }
-
-      activationTimer = null;
-    }, ACTIVATE_DELAY);
+      activeNote = noteElement;
+      activeNote.classList.add("active");
+      deleteButton.classList.add("translate-x-0");
+      overlay.classList.remove("hidden");
+    } else {
+    }
   };
 
   /**
    * Main event handler for both mouseenter and click events
    */
   const handleNoteEvent = (event) => {
-    // Ignore clicks on delete buttons
-    if (event.type === "click" && event.target.closest(".delete-button")) {
-      return;
-    }
-
     const noteWrapper = event.target.closest(".note-wrapper");
     if (noteWrapper) {
       activateNote(noteWrapper);
