@@ -7,6 +7,7 @@ export class FormManager {
   constructor() {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
+    this.saveTimeout = null;
     this.init();
   }
 
@@ -61,6 +62,16 @@ export class FormManager {
       this.handleReset();
       this.animateResetButton();
     });
+
+    // Use event delegation for delete buttons
+    this.elements.noteContainer.addEventListener("click", (event) => {
+      const deleteButton = event.target.closest(".delete-button");
+      if (deleteButton) {
+        event.stopPropagation();
+        const noteId = deleteButton.closest(".note-wrapper").dataset.id;
+        this.deleteNote(noteId);
+      }
+    });
   }
 
   animateResetButton() {
@@ -93,16 +104,13 @@ export class FormManager {
     const noteData = this.createNoteObject();
     const noteElement = createNewNote(noteData);
 
-    // Save to database and storage
+    // Save to database
     this.dataBase.push(noteData);
-    this.saveToLocalStorage(noteData);
+    this.debouncedSave();
 
     // Update UI
     this.resetForm();
     this.addNoteToUI(noteElement);
-
-    // Attach delete event listener to the new note
-    this.attachDeleteHandler(noteElement);
   }
 
   addNoteToUI(noteElement) {
@@ -126,11 +134,19 @@ export class FormManager {
     this.initializeTimestamp();
   }
 
-  saveToLocalStorage(newNote) {
+  // Debounced save to prevent excessive writes to localStorage
+  debouncedSave() {
+    clearTimeout(this.saveTimeout);
+    this.saveTimeout = setTimeout(() => {
+      this.updateStorage();
+    }, 300);
+  }
+
+  updateStorage() {
     try {
       localStorage.setItem(this.storageKey, JSON.stringify(this.dataBase));
     } catch (error) {
-      console.error("Failed to save notes to local storage:", error);
+      console.error("Failed to update local storage:", error);
     }
   }
 
@@ -156,44 +172,48 @@ export class FormManager {
     // Filter out expired notes
     this.removeExpiredNotes();
 
+    // Create a document fragment for better performance
+    const fragment = document.createDocumentFragment();
+
     // Render all remaining notes
     this.dataBase.forEach((noteData) => {
       const noteElement = createNewNote(noteData);
-      this.elements.noteContainer.appendChild(noteElement);
+      fragment.appendChild(noteElement);
     });
 
-    // Add delete handlers to all notes
-    this.setupDeleteHandlers();
+    // Append all notes at once for better performance
+    this.elements.noteContainer.appendChild(fragment);
   }
 
   removeExpiredNotes() {
+    const initialCount = this.dataBase.length;
     this.dataBase = this.dataBase.filter(
       (note) => !this.formValidation.isNoteDuePassed(note)
     );
-    this.updateStorage();
-  }
 
-  updateStorage() {
-    try {
-      localStorage.setItem(this.storageKey, JSON.stringify(this.dataBase));
-    } catch (error) {
-      console.error("Failed to update local storage:", error);
+    // Only update storage if notes were actually removed
+    if (initialCount !== this.dataBase.length) {
+      this.updateStorage();
     }
   }
 
   deleteNote(noteId) {
     // Remove from database
     this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
-    this.updateStorage();
+    this.debouncedSave();
 
-    // Remove from UI
-    const noteElement = document.querySelector(
+    // Remove from UI - use the cached container for better performance
+    const noteElement = this.elements.noteContainer.querySelector(
       `.note-wrapper[data-id="${noteId}"]`
     );
+
     if (noteElement) {
       noteElement.classList.add("delete-animation");
       setTimeout(() => {
-        noteElement.remove();
+        // Check if element still exists before removing it
+        if (noteElement.parentNode) {
+          noteElement.remove();
+        }
       }, 1100);
       this.elements.overlay.classList.add("hidden");
     }
@@ -201,31 +221,5 @@ export class FormManager {
 
   setupNoteTracking() {
     setupNoteTracking(this.elements.noteContainer);
-    this.setupDeleteHandlers();
-  }
-
-  setupDeleteHandlers() {
-    const deleteButtons = document.querySelectorAll(".delete-button");
-    deleteButtons.forEach((button) => this.attachDeleteHandler(button));
-  }
-
-  attachDeleteHandler(element) {
-    const button = element.classList.contains("delete-button")
-      ? element
-      : element.querySelector(".delete-button");
-
-    if (!button) return;
-
-    const deleteHandler = (event) => {
-      event.stopPropagation();
-      const noteId = event.target.closest(".note-wrapper").dataset.id;
-
-      // Remove event listener before deleting
-      button.removeEventListener("click", deleteHandler);
-
-      this.deleteNote(noteId);
-    };
-
-    button.addEventListener("click", deleteHandler);
   }
 }
