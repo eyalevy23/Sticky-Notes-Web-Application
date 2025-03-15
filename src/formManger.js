@@ -33,6 +33,7 @@ export class FormManager {
       textArea: document.getElementById("text-area"),
       date: document.getElementById("date"),
       time: document.getElementById("time"),
+      overlay: document.getElementById("overlay"),
     };
   }
 
@@ -190,7 +191,11 @@ export class FormManager {
       `.note-wrapper[data-id="${noteId}"]`
     );
     if (noteElement) {
-      noteElement.remove();
+      noteElement.classList.add("delete-animation");
+      setTimeout(() => {
+        noteElement.remove();
+      }, 1100);
+      this.elements.overlay.classList.add("hidden");
     }
   }
 
@@ -205,17 +210,22 @@ export class FormManager {
   }
 
   attachDeleteHandler(element) {
-    // If passed a note element, find its delete button
     const button = element.classList.contains("delete-button")
       ? element
       : element.querySelector(".delete-button");
 
     if (!button) return;
 
-    button.addEventListener("click", (event) => {
+    const deleteHandler = (event) => {
       event.stopPropagation();
       const noteId = event.target.closest(".note-wrapper").dataset.id;
+
+      // Remove event listener before deleting
+      button.removeEventListener("click", deleteHandler);
+
       this.deleteNote(noteId);
-    });
+    };
+
+    button.addEventListener("click", deleteHandler);
   }
 }

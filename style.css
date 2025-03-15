@@ -336,7 +336,7 @@ body {
   }
 }
 
-.fall-dnd-delete {
+.delete-animation {
   animation: fallAndDelete 1.2s ease-out;
 }
 
