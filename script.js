@@ -3,29 +3,21 @@ import { FormManager } from "./src/formManger.js";
 const init = () => {
   // localStorage.clear();
   new FormManager();
-  // Pre-calculate random positions upfront for better performance
-  const notes = gsap.utils.toArray(".note");
-  const randomX = notes.map(() => Math.random() * 4000 - 2000); // -200 to 200
 
-  gsap.fromTo(
-    notes,
-    {
+  setTimeout(() => {
+    animateNotes();
+  }, 300);
+
+  const animateNotes = () => {
+    gsap.from(".note", {
+      y: 500,
       opacity: 0,
-      x: (i) => randomX[i], // Use pre-generated random values
-    },
-    {
-      x: 0,
-      opacity: 1,
-
-      duration: 0.8, // Longer duration for smoother perception
-      stagger: {
-        each: 0.15,
-        from: "center", // Better distribution
-        ease: "power2.inOut",
-      },
-      clearProps: "all", // This clears the y transform after animation completes
-    }
-  );
+      duration: 0.7,
+      stagger: 0.2, // Each circle animates with a slight delay
+      ease: "power2.out",
+      clearProps: "y",
+    });
+  };
 };
 
 document.addEventListener("DOMContentLoaded", init);

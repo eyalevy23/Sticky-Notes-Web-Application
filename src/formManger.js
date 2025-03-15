@@ -178,6 +178,10 @@ export class FormManager {
     // Render all remaining notes
     this.dataBase.forEach((noteData) => {
       const noteElement = createNewNote(noteData);
+      noteElement.style.opacity = 0;
+      setTimeout(() => {
+        noteElement.style.opacity = 1;
+      }, 400);
       fragment.appendChild(noteElement);
     });
 
