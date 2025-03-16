@@ -7,7 +7,6 @@ export class FormManager {
   constructor() {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
-    this.saveTimeout = null;
     this.init();
   }
 
@@ -106,7 +105,7 @@ export class FormManager {
 
     // Save to database
     this.dataBase.push(noteData);
-    this.debouncedSave();
+    this.updateStorage();
 
     // Update UI
     this.resetForm();
@@ -132,14 +131,6 @@ export class FormManager {
     this.elements.textArea.value = "";
     this.formValidation.resetFormFields();
     this.initializeTimestamp();
-  }
-
-  // Debounced save to prevent excessive writes to localStorage
-  debouncedSave() {
-    clearTimeout(this.saveTimeout);
-    this.saveTimeout = setTimeout(() => {
-      this.updateStorage();
-    }, 300);
   }
 
   updateStorage() {
@@ -178,10 +169,6 @@ export class FormManager {
     // Render all remaining notes
     this.dataBase.forEach((noteData) => {
       const noteElement = createNewNote(noteData);
-      noteElement.style.opacity = 0;
-      setTimeout(() => {
-        noteElement.style.opacity = 1;
-      }, 400);
       fragment.appendChild(noteElement);
     });
 
@@ -204,7 +191,7 @@ export class FormManager {
   deleteNote(noteId) {
     // Remove from database
     this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
-    this.debouncedSave();
+    this.updateStorage();
 
     // Remove from UI - use the cached container for better performance
     const noteElement = this.elements.noteContainer.querySelector(

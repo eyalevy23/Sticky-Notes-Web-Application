@@ -6,7 +6,7 @@ const init = () => {
 
   setTimeout(() => {
     animateNotes();
-  }, 300);
+  }, 10);
 
   const animateNotes = () => {
     gsap.from(".note", {
