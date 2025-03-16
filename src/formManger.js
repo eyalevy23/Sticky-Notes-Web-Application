@@ -193,7 +193,7 @@ export class FormManager {
     this.dataBase = this.dataBase.filter((note) => note.id !== noteId);
     this.updateStorage();
 
-    // Remove from UI - use the cached container for better performance
+    // Remove from UI
     const noteElement = this.elements.noteContainer.querySelector(
       `.note-wrapper[data-id="${noteId}"]`
     );
@@ -201,16 +201,13 @@ export class FormManager {
     if (noteElement) {
       noteElement.classList.add("delete-animation");
       setTimeout(() => {
-        // Check if element still exists before removing it
-        if (noteElement.parentNode) {
-          noteElement.remove();
-        }
+        noteElement.remove();
       }, 600);
       this.elements.overlay.classList.add("hidden");
     }
   }
 
   setupNoteTracking() {
-    setupNoteTracking(this.elements.noteContainer);
+    setupNoteTracking(this.elements.noteContainer, this.elements.overlay);
   }
 }
