@@ -73,24 +73,9 @@ export const setupNoteTracking = (container, overlayDomElement) => {
     }
   };
 
-  /**
-   * Handles clicks outside of notes to deactivate them
-   */
-  const handleOutsideClick = (event) => {
-    if (
-      activeNote &&
-      !activeNote.contains(event.target) &&
-      !event.target.closest(".note-wrapper")
-    ) {
-      deactivateNote();
-    }
-  };
-
-  overlay.addEventListener("click", deactivateNote);
-
   // Event Listeners
   container.addEventListener("mouseover", handleMouseOver);
   container.addEventListener("mouseout", handleMouseOut);
   container.addEventListener("click", handleClick);
-  document.addEventListener("click", handleOutsideClick);
+  overlay.addEventListener("click", deactivateNote);
 };
