@@ -98,7 +98,7 @@ export const createNewNote = (noteObj) => {
     span1.appendChild(timestamp);
 
     const span2 = document.createElement("div");
-    span2.className = "col-span-1 flex justify-end items-end"; // Delete button will be bottom right corner fill
+    span2.className = "col-span-1 flex justify-end items-end"; // Delete button will be bottom right corner
     span2.appendChild(btn);
 
     grid.append(span1, span2);
