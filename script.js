@@ -12,7 +12,7 @@ const init = () => {
     gsap.from(".note", {
       y: 500,
       opacity: 0,
-      duration: 0.7,
+      duration: 0.2,
       stagger: 0.2, // Each circle animates with a slight delay
       ease: "power2.out",
       clearProps: "y",

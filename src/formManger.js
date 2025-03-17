@@ -162,6 +162,10 @@ export class FormManager {
   }
 
   loadNotes() {
+    setTimeout(() => {
+      this.elements.noteContainer.classList.remove("hidden");
+    }, 100);
+
     if (!this.dataBase || !this.dataBase.length) return;
 
     // Filter out expired notes
