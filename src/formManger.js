@@ -98,6 +98,10 @@ export class FormManager {
   }
 
   handleSave() {
+    this.elements.saveBtn.classList.add("pulse");
+    setTimeout(() => {
+      this.elements.saveBtn.classList.remove("pulse");
+    }, 300);
     if (!this.formValidation.isValidForm()) return;
 
     const noteData = this.createNoteObject();

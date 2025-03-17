@@ -376,3 +376,19 @@ body {
     transform: rotateX(180deg);
   }
 }
+
+.pulse {
+  animation: pulseAnimation 0.2s ease-in-out 1;
+}
+
+@keyframes pulseAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
