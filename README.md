@@ -1,6 +1,6 @@
 # Sticky Notes Web Application
 
-## 📱 View The Project At
+## 📱 View Project At
 
 https://eyal-js-proj.netlify.app/
 
