@@ -3,9 +3,7 @@ import { FormManager } from "./src/formManger.js";
 const getRandomPosition = (min, max) =>
   Math.floor(Math.random() * (max - min + 1)) + min;
 
-const animateNotes = () => {
-  const notes = document.querySelectorAll(".note");
-
+const animateNotes = (notes) => {
   notes.forEach((note) => {
     gsap.from(note, {
       x: getRandomPosition(-700, 700),
@@ -25,9 +23,10 @@ const animateNotes = () => {
 const init = () => {
   new FormManager();
 
+  const notes = document.querySelectorAll(".note");
   setTimeout(() => {
-    animateNotes();
-  }, 10);
+    animateNotes(notes);
+  }, 50);
 };
 
 document.addEventListener("DOMContentLoaded", init);
