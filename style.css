@@ -352,7 +352,7 @@ body {
 }
 
 .rotateY {
-  animation: rotateAnimationY 1s ease-in-out 1 0.2s;
+  animation: rotateAnimationY 1s ease-in-out 1 0.9s;
 }
 
 @keyframes rotateAnimationY {
