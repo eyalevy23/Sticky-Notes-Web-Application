@@ -3,9 +3,8 @@
  * Prevents accidental deletions and supports both desktop and mobile interactions
  */
 
-export const setupNoteTracking = (container, overlayDomElement) => {
+export const setupNoteTracking = (container, overlay) => {
   let activeNote = null;
-  const overlay = overlayDomElement;
 
   if (!container) {
     console.error("Container not provided");
