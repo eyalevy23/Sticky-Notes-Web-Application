@@ -64,6 +64,7 @@ export const setupNoteTracking = (container, overlayDomElement) => {
 
   /**
    * Handles click activation for mobile
+   * Bubble up to mouseover
    */
   const handleClick = (event) => {
     const noteWrapper = event.target.closest(".note-wrapper");
