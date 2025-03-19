@@ -23,7 +23,7 @@ export const STYLE_CONSTANTS = {
     "rotate-7deg",
   ],
   position: ["-top-1", "top-0", "top-1"],
-  pin: ["", "transform: scaleX(-1)"],
+  pin: ["", "transform: scaleX(-1)", "transform: scaleX(1)"],
 };
 
 /**

@@ -74,6 +74,17 @@ body {
   left: 55%;
   transform: translateX(-50%);
   z-index: 10;
+  animation: pinFadeIn 2s ease-in-out forwards;
+}
+
+@keyframes pinFadeIn {
+  0%,
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* From Uiverse.io by Yaya12085 */
@@ -337,7 +348,7 @@ body {
 }
 
 .delete-animation {
-  animation: fallAndDelete 0.7s ease-out;
+  animation: fallAndDelete 0.6s ease-out;
 }
 
 @keyframes fallAndDelete {
@@ -347,7 +358,7 @@ body {
   }
   100% {
     opacity: 0;
-    transform: translateY(100%) scale(0.5) rotate(180deg);
+    transform: translateY(100%) scale(0.1) rotate(90deg);
   }
 }
 
