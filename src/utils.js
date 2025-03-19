@@ -1,27 +1,35 @@
-const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+/**
+ * Collection of constants and utility functions for note styling and positioning
+ */
 
-const pastelColors = [
-  "#ffc", // Pastel Yellow
-  "#ccf", // Pastel Mint
-  "#cfc", // Pastel Green
-  "#cff", // Pastel Cyan
-  "#fcc", // Pastel Pink
-  "#fcf", // Pastel Lavender
-  "#ffc", // Pastel Peach
-];
+export const STYLE_CONSTANTS = {
+  colors: {
+    pastel: [
+      "#ffc", // Yellow
+      "#ccf", // Mint
+      "#cfc", // Green
+      "#cff", // Cyan
+      "#fcc", // Pink
+      "#fcf", // Lavender
+      "#ffc", // Peach
+    ],
+  },
+  rotation: [
+    "-rotate-7deg",
+    "-rotate-5deg",
+    "-rotate-2deg",
+    "rotate-2deg",
+    "rotate-5deg",
+    "rotate-7deg",
+  ],
+  position: ["-top-1", "top-0", "top-1"],
+  pin: ["", "transform: scaleX(-1)"],
+};
 
-const degrees = [
-  "-rotate-7deg",
-  "-rotate-5deg",
-  "-rotate-2deg",
-  "rotate-2deg",
-  "rotate-5deg",
-  "rotate-7deg",
-];
-
-const positions = ["-top-1", "top-0", "top-1"];
-
-const pinPosition = ["", "transform: scaleX(-1)"];
-
-// Exporting all in one line
-export { getRandomElement, pastelColors, degrees, positions, pinPosition };
+/**
+ * Returns a random element from an array
+ * @param {Array} arr - The array to select from
+ * @returns {*} A random element from the array
+ */
+export const getRandomElement = (arr) =>
+  arr[Math.floor(Math.random() * arr.length)];
