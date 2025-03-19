@@ -21,12 +21,3 @@ const init = () => {
 };
 
 document.addEventListener("DOMContentLoaded", init);
-
-// gsap.from(".note", {
-//   y: 3, // Start 30px below final position (reduced from 50px)
-//   opacity: 0, // Start fully transparent
-//   duration: 1.8, // Slightly faster animation
-//   stagger: 0.5, // Slightly quicker stagger for smoother sequence
-//   ease: "back.out(1.2)", // Using back.out for a slight overshoot that settles into place
-//   clearProps: "y", // This clears the y transform after animation completes
-// });
