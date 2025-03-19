@@ -26,7 +26,6 @@ export const setupNoteTracking = (container, overlay) => {
     deleteButton.classList.add("translate-x-0");
     overlay.classList.remove("hidden");
   };
-  console.log("hey");
 
   /**
    * Deactivates the currently active note
