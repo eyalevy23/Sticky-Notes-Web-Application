@@ -64,9 +64,8 @@ sticky-notes/
 │   ├── image.svg        # Pin or other decorative SVG
 │   └── ...              # Other assets
 │
-├── README.md            # Project documentation
 │
-└── LICENSE              # Project license
+└── README.md            # Project documentation
 ```
 
 ## 🌟 Key Components
