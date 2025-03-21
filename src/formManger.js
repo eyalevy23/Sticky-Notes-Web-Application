@@ -102,6 +102,10 @@ export class FormManager {
     setTimeout(() => {
       this.elements.saveBtn.classList.remove("pulse");
     }, 300);
+
+    // Revalidate time before saving
+    this.formValidation.validateTimeField();
+
     if (!this.formValidation.isValidForm()) return;
 
     const noteData = this.createNoteObject();
