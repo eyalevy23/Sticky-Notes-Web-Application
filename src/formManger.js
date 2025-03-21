@@ -184,7 +184,6 @@ export class FormManager {
       fragment.appendChild(noteElement);
     });
 
-    // Append all notes at once for better performance
     this.elements.noteContainer.appendChild(fragment);
   }
 
