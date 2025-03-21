@@ -90,7 +90,7 @@ export class FormValidation {
 
     return (
       hour < now.getHours() ||
-      (hour === now.getHours() && minute < now.getMinutes())
+      (hour === now.getHours() && minute <= now.getMinutes())
     );
   }
 
