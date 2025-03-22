@@ -61,8 +61,7 @@ sticky-notes/
 │
 ├── asset/
 │   ├── ficon.svg        # Favicon
-│   ├── image.svg        # Pin or other decorative SVG
-│   └── ...              # Other assets
+│   └── image.svg        # Pin or other decorative SVG
 │
 │
 └── README.md            # Project documentation
