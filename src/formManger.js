@@ -7,6 +7,10 @@ export class FormManager {
   constructor() {
     this.storageKey = "notes";
     this.dataBase = this.getExistingRecords();
+
+    this.CHECK_INTERVAL = 2 * 60 * 1000; // 2 min
+    this.expirationInterval = null;
+
     this.init();
   }
 
