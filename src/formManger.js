@@ -34,6 +34,7 @@ export class FormManager {
       date: document.getElementById("date"),
       time: document.getElementById("time"),
       overlay: document.getElementById("overlay"),
+      resetBtn2: document.getElementById("reset-btn2"),
     };
   }
 
@@ -60,6 +61,10 @@ export class FormManager {
     this.elements.resetBtn.addEventListener("click", () => {
       this.handleReset();
       this.animateResetButton();
+    });
+
+    this.elements.resetBtn2.addEventListener("click", () => {
+      this.handleReset();
     });
 
     // Use event delegation for delete buttons
