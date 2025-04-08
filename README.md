@@ -104,6 +104,10 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - Tailwind CSS
 
+
+<img width="800" alt="SCR-20250409-bjnh" src="https://github.com/user-attachments/assets/ed2bb350-3c42-4eda-9c3b-014eeec8471e" />
+
+
 ---
 
 **Happy Note-Taking! 📝✨**
