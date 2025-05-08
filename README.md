@@ -88,26 +88,6 @@ sticky-notes/
 - **Mobile**: Click to activate & delete button.
 - Click outside to deactivate.
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 🎉 Acknowledgments
-
-- Tailwind CSS
-
-
-<img width="800" alt="SCR-20250409-bjnh" src="https://github.com/user-attachments/assets/ed2bb350-3c42-4eda-9c3b-014eeec8471e" />
-
-
 ---
 
 **Happy Note-Taking! 📝✨**
